@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Data App</title>
+</head>
+<body>
+    <h1>Таблица результатов</h1>
+    <table border="1">
+        <tr>
+            <th>Название</th>
+            <th>За указанный период</th>
+            <th>За всё время</th>
+        </tr>
+        {% for row in items %}
+            <tr>
+                {% for item in row %}
+                    <td>{{ item }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h1>Загрузить файл</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if error_message %}
+        <div style="color: red;">
+            {{ error_message }}
+        </div>
+    {% endif %}
+
+    <h1>Uploaded Files</h1>
+    <ul>
+        {% for file in files %}
+            <li><a href="{{ file.file.url }}">{{ file.file.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    {% if data %}
+        <h1>Processed Data</h1>
+        <div>
+            {{ data|safe }}
+        </div>
+    {% endif %}
+</body>
+</html>

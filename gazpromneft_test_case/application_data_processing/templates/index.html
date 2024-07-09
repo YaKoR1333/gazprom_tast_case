@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
     <title>Application Data App</title>
 </head>
 <body>
@@ -32,13 +48,6 @@
             {{ error_message }}
         </div>
     {% endif %}
-
-    <h1>Uploaded Files</h1>
-    <ul>
-        {% for file in files %}
-            <li><a href="{{ file.file.url }}">{{ file.file.name }}</a></li>
-        {% endfor %}
-    </ul>
 
     {% if data %}
         <h1>Processed Data</h1>
